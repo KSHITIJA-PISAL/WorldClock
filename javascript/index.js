@@ -27,13 +27,15 @@ function citiTime() {
 }
 
 function updateCity(event) {
+  let citiesElement = document.querySelector("#cities");
+  citiesElement.innerHTML = ``;
   let cityTimeZone = event.target.value;
   if (cityTimeZone === "current") {
     cityTimeZone = moment.tz.guess();
   }
   let cityName = cityTimeZone.replace("_", "").split("/")[1];
   let cityTime = moment().tz(cityTimeZone);
-  let citiesElement = document.querySelector("#cities");
+
   citiesElement.innerHTML += `
   <div class="city">
     <div>
@@ -44,7 +46,9 @@ function updateCity(event) {
     "A"
   )}</small>
     </div>
-  </div>`;
+  </div>
+  <a href="index.html">All Cities</a>
+  `;
 }
 
 citiTime();
